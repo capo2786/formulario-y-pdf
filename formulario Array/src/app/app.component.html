@@ -1,0 +1,90 @@
+<div style="text-align:center">
+  <h1>
+    Formulario 
+  </h1>
+</div>
+<form [formGroup]="form" (submit)="submit()">
+<div class="example-container">
+             
+ 
+    <mat-form-field>
+      <input matInput placeholder="Nombre" formControlName="nombre">
+      <mat-error *ngIf="form.controls['nombre'].touched && form.controls['nombre'].hasError('required')">El nombre es obligatorio</mat-error>
+      <mat-error *ngIf="form.controls['nombre'].touched && form.controls['nombre'].hasError('minlength')">Ingrese mínimo 3 caracteres.</mat-error>
+      <mat-error *ngIf="form.controls['nombre'].touched && form.controls['nombre'].hasError('maxlength')">Ingrese máximo 30 caracteres.</mat-error>
+      <mat-error *ngIf="form.controls['nombre'].touched && form.controls['nombre'].hasError('pattern')">Solo puede ingresar letras.</mat-error>
+    </mat-form-field>
+ 
+  <br>
+  
+
+    <mat-form-field>
+      <input matInput placeholder="Apellido" formControlName="apellido">
+      <mat-error *ngIf="form.controls['apellido'].touched && form.controls['apellido'].hasError('required')">El apellido es obligatorio</mat-error>
+      <mat-error *ngIf="form.controls['apellido'].touched && form.controls['apellido'].hasError('minlength')">Ingrese mínimo 3 caracteres.</mat-error>
+      <mat-error *ngIf="form.controls['apellido'].touched && form.controls['apellido'].hasError('maxlength')">Ingrese máximo 30 caracteres.</mat-error>
+      <mat-error *ngIf="form.controls['apellido'].touched && form.controls['apellido'].hasError('pattern')">Solo puede ingresar letras.</mat-error>
+    </mat-form-field>
+  
+<br>
+
+    <mat-form-field>
+      <input matInput placeholder="Email" formControlName="email">
+      <mat-error *ngIf="form.controls['email'].touched && form.controls['email'].hasError('required')">El email es obligatorio</mat-error>
+      <mat-error *ngIf="form.controls['email'].touched && form.controls['email'].hasError('email')">El email no es válido</mat-error>
+    </mat-form-field>
+ 
+  
+  <mat-form-field>
+  <input formControlName="fecha" matInput [matDatepicker]="picker" placeholder="Fecha">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+  <mat-error *ngIf="form.controls['fecha'].touched && form.controls['fecha'].hasError('required')">Servicio requerido.</mat-error>
+</mat-form-field>
+
+<br>
+
+
+<mat-form-field>
+<input formControlName="hora"type="Time"displayFormat="HH:mm" matInput placeholder="Hora">
+<mat-error>Hora es requerida.</mat-error>
+</mat-form-field>
+
+
+    
+  <div class="direcciones" formArrayName="direcciones"(submit)="submit()">
+    <h3>Direcciones</h3>
+    <div class="direccion" [formGroupName]="i" *ngFor="let direccion of form.controls['direcciones'].controls; let i = index">
+
+     
+        <mat-form-field>
+          <input matInput placeholder="Dirección" formControlName="direccion">
+          <mat-error *ngIf="form.controls['direcciones'].controls[i].controls['direccion'].touched && form.controls['direcciones'].controls[i].controls['direccion'].hasError('required')">La dirección es obligatoria</mat-error>
+        </mat-form-field>
+ 
+      
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Teléfono" formControlName="telefono">
+          <mat-error *ngIf="form.controls['direcciones'].controls[i].controls['telefono'].touched && form.controls['direcciones'].controls[i].controls['telefono'].hasError('required')">El teléfono es obligatorio</mat-error>
+          <mat-error *ngIf="form.controls['direcciones'].controls[i].controls['telefono'].touched && form.controls['direcciones'].controls[i].controls['telefono'].hasError('minlength')">Ingrese mínimo 10 números.</mat-error>
+          <mat-error *ngIf="form.controls['direcciones'].controls[i].controls['telefono'].touched && form.controls['direcciones'].controls[i].controls['telefono'].hasError('pattern')">Solo puede ingresar números.</mat-error>
+        </mat-form-field>
+      </div>
+        <br>
+        <br>
+      <button mat-raised-button color="warn" type="button" (click)="eliminarDireccion(i)">Eliminar dirección</button>
+        
+    </div>
+
+    <button mat-raised-button color="accent" type="button" (click)="annadirDireccion()">Añadir dirección</button>
+  </div>
+<br>
+<br>
+  <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid"(click)="onClear()">Enviar</button>
+
+  </div>
+
+
+
+</form>

@@ -1,0 +1,28 @@
+<div class="alert alert-secondary" role="alert" >
+<h2>PDF</h2>
+    <div class="row" aling='center'>
+    <div class="col-md-6">
+        <label >texto:</label><br>
+        <textarea type="text" rows="10" cols="50"[(ngModel)]="texto" name="texto" id="texto" placeholder="texto " ></textarea><br>
+        <label >Ingrese numero de columnas:</label><br><br>
+        <input class="form-control" type="number" [(ngModel)]="columnas" name="columnas" id="columnas" placeholder="Columnas" /><br>
+        <label >Formatos de PDF: a0-a1-a2-a3-a4-a5-a6-a7-a8-a9-a10</label><br><br>
+        <label >Ingrese el formato:</label><br><br>
+        <input class="form-control" [(ngModel)]="format" name="format"  placeholder="Formato" id="format" /><br>
+
+        <!--select [(ngModel)]="formato" name="formato" class="form-control">
+          <option value='a3'>a3</option>
+          <option value='a4'>a4</option>
+          <option value='a5'>a5</option>
+          <option value='a6'>a6</option>
+        </select><br><br>-->
+        <label >Ingrese el tamaño de letra:</label><br>
+        <input type="number" [(ngModel)]="fontSize" name="fontSize" class="form-control" id="fontSize" placeholder="Tamaño " /><br><br>
+        <div style="text-align: right">
+
+          <button style="align:left" type="button" class="btn btn-danger" (click)="crearPDF()">Descargar Pdf</button>
+        </div>
+     </div>
+    </div>
+
+</div>
